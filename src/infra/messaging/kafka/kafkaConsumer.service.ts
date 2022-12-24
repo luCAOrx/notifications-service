@@ -10,7 +10,7 @@ export class KafkaConsumerService
     super({
       client: {
         clientId: 'notifications',
-        brokers: ['172.24.0.2:9092'],
+        brokers: [`${process.env.KAFKA_HOST}:${process.env.KAFKA_PORT}`],
       },
     });
   }
