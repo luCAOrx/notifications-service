@@ -1,24 +1,39 @@
 version: '3'
 
 services:
+  database:
+    image: postgres
+    hostname: database
+    container_name: 'ignite-lab-database'
+    restart: always
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DATABASE}
+
   zookeeper:
     image: 'bitnami/zookeeper:latest'
+    restart: always
     container_name: 'ignite-lab-kafka-zookeeper'
     ports:
-      - '2181:2181'
+      - ${ZOOKEEPER_PORT}:${ZOOKEEPER_PORT}
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
   kafka:
     image: 'bitnami/kafka:latest'
+    hostname: kafka
     container_name: 'ignite-lab-kafka-consumer'
+    restart: always
     ports:
-      - '9092:9092'
+      - ${KAFKA_PORT}:${KAFKA_PORT}
     environment:
       - KAFKA_BROKER_ID=1
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:${KAFKA_PORT}
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://${KAFKA_HOST}:${KAFKA_PORT}
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:${ZOOKEEPER_PORT}
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
