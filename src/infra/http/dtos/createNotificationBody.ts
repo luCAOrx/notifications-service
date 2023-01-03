@@ -10,5 +10,6 @@ export class CreateNotificationBody {
   content: string;
 
   @IsNotEmpty()
+  @Length(5, 240)
   category: string;
 }
