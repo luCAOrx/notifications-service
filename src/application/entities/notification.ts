@@ -11,6 +11,8 @@ export interface NotificationProps {
   createdAt: Date;
 }
 
+export const notificationUUID = randomUUID();
+
 export class Notification {
   private _id: string;
   private props: NotificationProps;
@@ -19,7 +21,7 @@ export class Notification {
     props: Replace<NotificationProps, { createdAt?: Date }>,
     id?: string,
   ) {
-    this._id = id ?? randomUUID();
+    this._id = id ?? notificationUUID;
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
