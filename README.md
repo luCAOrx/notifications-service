@@ -1,73 +1,201 @@
+<h1 align="center">
+  <img src=".github/assets/logo-ignite-lab-nodejs.svg" width="400" alt="Ignite Lab NodeJS logo" />
+</h1>
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="#descrição">Descrição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#conteúdo-técnico-aprendido">Conteúdo técnico aprendido</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#requisitos">Requisitos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#inicializando">Inicializando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <br/>
+  <a href="#executando-a-aplicação">Executando a aplicação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#documentação-da-api">Documentação da API</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#teste">Teste</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#comandos-do-docker-compose">Comandos do docker-compose</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#licença">Licença</a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descrição
+Micro serviço de notificações, construído durante o evento Ignite Lab Node.js, fornecido pela [Rocketseat](https://www.rocketseat.com.br/)
+ 
+## Conteúdo técnico aprendido
+- [DDD](https://khalilstemmler.com/articles/domain-driven-design-intro/)
+- [TDD](https://khalilstemmler.com/articles/test-driven-development/introduction-to-tdd/)
+- [SOLID](https://www.youtube.com/watch?v=vAV4Vy4jfkc)
+- [Value Objects](https://khalilstemmler.com/articles/typescript-value-object/)
+- [In Memory Database](https://www.martinfowler.com/bliki/InMemoryTestDatabase.html)
+- [Dependency Injection](https://martinfowler.com/articles/injection.html)
+- [Factory Pattern](https://www.digitalocean.com/community/tutorials/js-factory-pattern)
+ 
+## Tecnologias
+- [Node.js LTS](https://nodejs.org/pt-br/)
+- [Typescript](https://www.typescriptlang.org/)
+- [NestJS](https://nestjs.com/)
+- [Prisma](https://www.prisma.io/)
+- [KafkaJS](https://kafka.js.org/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [JestJS](https://jestjs.io/)
+- [Supertest](https://github.com/ladjs/supertest#readme)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Requisitos
+- [Node.js LTS](https://nodejs.org/pt-br/)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Description
+## Inicializando
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Subir os containers do docker
+```bash
+$ sudo make up
+```
 
-## Installation
+### Criar o tópico no kafka
+```bash
+$ sudo make create-kafka-consumer-topic 
+```
 
+### Instalar as dependências
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Executando a aplicação
 
+### modo de desenvolvimento
 ```bash
-# development
 $ npm run start
+```
 
-# watch mode
+### modo de observação
+```bash
 $ npm run start:dev
+```
 
-# production mode
+### modo de produção
+```bash
 $ npm run start:prod
 ```
 
-## Test
-
+### enviando uma mensagem com kafka
 ```bash
-# unit tests
+$ npm run start:dev:producer 
+```
+
+## Documentação da API
+Inicie o servidor em modo de desenvolvimento
+```bash
+$ npm run start:dev
+```
+e [acesse](http://localhost:3000/api-docs)
+
+## Teste
+
+### testes unitários
+```bash
 $ npm run test
+```
 
-# e2e tests
+### testes e2e (ponta à ponta)
+```bash
 $ npm run test:e2e
+```
 
-# test coverage
+### cobertura de testes
+```bash
 $ npm run test:cov
 ```
 
-## Support
+## Comandos do docker-compose
+### Subir os containers
+```bash
+$ sudo make up
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Listar os containers
+```bash
+$ sudo make list-containers
+```
 
-## Stay in touch
+### Remover os containers
+```bash
+$ sudo make down
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Kafka
+#### Consumidor
+##### Subir o container
+```bash
+$ sudo make start-kafka-consumer
+```
 
-## License
+##### Criar o tópico
+```bash
+$ sudo make create-kafka-consumer-topic 
+```
 
-Nest is [MIT licensed](LICENSE).
+##### Listar tópicos
+```bash
+$ sudo make list-kafka-consumer.topic 
+```
+
+##### Mostrar os logs
+```bash
+$ sudo make logs-kafka-consumer
+```
+
+##### Reiniciar o container
+```bash
+$ sudo make restart-kafka-consumer
+```
+
+##### Parar o container
+```bash
+$ sudo make stop-kafka-consumer
+```
+
+#### Zookeeper
+##### Subir o container
+```bash
+$ sudo make start-kafka-zookeeper 
+```
+
+##### Mostrar os logs
+```bash
+$ sudo make logs-kafka-zookeeper
+```
+
+##### Reiniciar o container
+```bash
+$ sudo make restart-kafka-zookeeper
+```
+
+##### Parar o container
+```bash
+$ sudo make stop-kafka-zookeeper
+```
+
+#### Banco de dados
+##### Subindo o container
+```bash
+$ sudo make start-database
+```
+
+##### Mostrar os logs
+```bash
+$ sudo make logs-database
+```
+
+##### Reiniciar o container
+```bash
+$ sudo make restart-database 
+```
+
+##### Parar o container
+```bash
+$ sudo make stop-database 
+```
+  
+## Licença
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
