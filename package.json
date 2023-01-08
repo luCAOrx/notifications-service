@@ -1,10 +1,10 @@
 {
   "name": "notifications-service",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "código produzido durante o evento Ignite Lab (Node.js) fornecido pela Rocketseat",
+  "author": "Lucas 'luCAO' Cunha",
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
